@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,10 +10,22 @@ namespace amazonEx1
 {
     internal class Amazon
     {
-        public Pages pages;
-        public Amazon()
+        private IWebDriver driver;
+        private Pages pages;
+
+        public Amazon(IWebDriver driver)
         {
-            pages = new Pages();
+            this.driver = driver;
+        }
+
+        public Pages Pages
+        {
+            get
+            {
+                if (this.pages == null)
+                    this.pages = new Pages(this.driver);
+                return this.pages;
+            }
         }
     }
 }

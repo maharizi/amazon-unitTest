@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace amazonEx1
 {
-    internal class Item
+    internal interface BrowsersFactory //Factory design pattern
     {
-        public string url;
-        public string titel;
-        public string price;
-
+        IWebDriver InitBrowser();
     }
 }

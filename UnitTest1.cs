@@ -8,18 +8,16 @@ namespace amazonEx1
     public class Tests
     {
         public IWebDriver driver;
-        Browsers brousers;
+        BrowsersFactory brousers;
         Amazon amazon;
         Dictionary<string, string> dictFilter = new Dictionary<string, string>();
 
         [SetUp]
         public void Setup()
         {
-            amazon = new Amazon();
-            // driver = new ChromeDriver("C:\\bootcamp ness\\drivers");
-            // driver.Url = "https://www.amazon.com/";
             brousers = new ChromeBrowser();
             driver = brousers.InitBrowser();
+            amazon = new Amazon(driver);
             dictFilter.Add("Price_Lower_Then", "100");
             dictFilter.Add("Price_Hiegher_OR_Equal_Then", "50");
             dictFilter.Add("Free_Shipping", "true");
@@ -30,9 +28,9 @@ namespace amazonEx1
         {
             try
             {
-                amazon.pages.home.searchBar.TextSearch("mouse", driver);
-                amazon.pages.home.searchBar.ClickSearch(driver);
-                amazon.pages.search.results.getResultBy(dictFilter);
+                amazon.Pages.Home.SearchBar.Text = "mouse";
+                amazon.Pages.Home.SearchBar.Click();
+                amazon.Pages.Search.Results.getResultBy(dictFilter);
                 Assert.Pass();
             }
             catch (Exception ex)

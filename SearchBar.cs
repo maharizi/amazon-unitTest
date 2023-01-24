@@ -4,21 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace amazonEx1
 {
     internal class SearchBar
     {
-        public void TextSearch(string text, IWebDriver driver)
+        private IWebDriver driver;
+
+        public SearchBar(IWebDriver driver)
         {
-            var set = driver.FindElement(By.Id("twotabsearchtextbox"));
-            set.SendKeys(text);
+            this.driver = driver;
         }
 
-        public void ClickSearch(IWebDriver driver)
+        public string Text
         {
-            var click = driver.FindElement(By.Id("nav-search-submit-button"));
-            click.Click();
+            set
+            {
+                this.driver.FindElement(By.Id("twotabsearchtextbox")).SendKeys(value);
+            }
+        }
+
+        public void Click()
+        {
+            this.driver.FindElement(By.Id("nav-search-submit-button")).Click();
         }
     }
 }

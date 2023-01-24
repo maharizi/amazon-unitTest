@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,21 @@ namespace amazonEx1
 {
     internal class Home
     {
+        private IWebDriver driver;
         public SearchBar searchBar;
-        public Home() 
+        public Home(IWebDriver driver) 
         {
-            searchBar = new SearchBar();
+            this.driver = driver;
+        }
+
+        public SearchBar SearchBar
+        {
+            get
+            {
+                if (this.searchBar == null)
+                    this.searchBar = new SearchBar(this.driver);
+                return this.searchBar;
+            }
         }
     }
 }

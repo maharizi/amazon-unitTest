@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace amazonEx1
 {
-    internal class ChromeBrowser : Browsers
+    internal class ChromeBrowser : BrowsersFactory
     {
         public IWebDriver driver = null;
         public IWebDriver InitBrowser()
