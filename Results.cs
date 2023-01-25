@@ -23,17 +23,18 @@ namespace amazonEx1
                 switch (filter.Key)
                 {
                     case "Price_Lower_Then":
-                        xpath += "and descendant::span[@class = 'a-price-whole' and text() < " + filter.Value;
+                        xpath += "and descendant::span[@class = 'a-price-whole' and text() < " + filter.Value + "]";
                         break;
                     case "Price_Hiegher_OR_Equal_Then":
-                        xpath += "and text() >= " + filter.Value;
+                        xpath += "and descendant::span[@class = 'a-price-whole' and text() >= " + filter.Value + "]";
                         break;
                     case "Free_Shipping":
-                        xpath += "and descendant::span[contains(text(), 'FREE'" + filter.Value;
+                        if(filter.Value == "true")
+                            xpath += "and descendant::span[contains(text(), 'FREE')]";
                         break;
                 }
             }
-            xpath += "]]";
+            xpath += "]";
         }
     }
 }
