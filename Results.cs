@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.DevTools.V107.Debugger;
 
 namespace amazonEx1
 {
@@ -21,7 +22,6 @@ namespace amazonEx1
         public void getResultBy(Dictionary<string, string> filters)
         {
             string xpath = "//div[@class='a-section a-spacing-small a-spacing-top-small'";
-            var elements = driver.FindElements(By.XPath(xpath));
             List<Item> items = new List<Item>();
 
             foreach (var filter in filters)
@@ -41,14 +41,17 @@ namespace amazonEx1
                 }
             }
             xpath += "]";
+            var elements = driver.FindElements(By.XPath(xpath));
 
-            foreach (var el in elements)
-            {
-                var title = el.FindElement(By.XPath(".//span[@class='a-size-medium a-color-base a-text-normal']")).Text;
-                var price = el.FindElement(By.XPath(".//span[@class='a-price-whole']")).Text + "." + el.FindElement(By.XPath("//span[@class='a-price-fraction']")).Text + "$";
-                var url = el.FindElement(By.XPath((".//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']"))).GetAttribute("href");
-                items.Add(new Item(title, price, url));
-            }
+            if (elements != null)
+                foreach (var el in elements)
+                {
+                    var title = el.FindElement(By.XPath(".//span[@class='a-size-medium a-color-base a-text-normal']")).Text;
+                    var price = el.FindElement(By.XPath(".//span[@class='a-price-whole']")).Text + "." + el.FindElement(By.XPath("//span[@class='a-price-fraction']")).Text + "$";
+                    var url = el.FindElement(By.XPath((".//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']"))).GetAttribute("href");
+                    items.Add(new Item(title, price, url));
+                }
+            Console.WriteLine("Size Elements: " + elements.Count());
 
             foreach (var item in items)
             {

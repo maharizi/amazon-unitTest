@@ -15,6 +15,7 @@ namespace amazonEx1
         [SetUp]
         public void Setup()
         {
+            brousers = new EdgeBrowser();
             brousers = new ChromeBrowser();
             driver = brousers.InitBrowser();
             amazon = new Amazon(driver);
