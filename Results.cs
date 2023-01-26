@@ -46,7 +46,7 @@ namespace amazonEx1
             {
                 var title = el.FindElement(By.XPath(".//span[@class='a-size-medium a-color-base a-text-normal']")).Text;
                 var price = el.FindElement(By.XPath(".//span[@class='a-price-whole']")).Text + "." + el.FindElement(By.XPath("//span[@class='a-price-fraction']")).Text + "$";
-                var url = el.FindElement(By.XPath(".//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']")).GetAttribute("href");
+                var url = el.FindElement(By.XPath((".//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']"))).GetAttribute("href");
                 items.Add(new Item(title, price, url));
             }
 
