@@ -8,21 +8,17 @@ namespace amazonEx1
 {
     internal class Item
     {
-        private string url;
         private string titel;
         private string price;
+        private string url;
 
-        public string Url
+        public Item(string title, string price, string url)
         {
-            set
-            {
-                this.url = value;
-            }
-            get
-            {
-                return this.url;
-            }
+            this.titel = title;
+            this.price = price;
+            this.url = url;
         }
+
         public string Titel 
         {
             set
@@ -44,6 +40,18 @@ namespace amazonEx1
             get
             {
                 return this.price;
+            }
+        }
+
+        public string Url
+        {
+            set
+            {
+                this.url = value;
+            }
+            get
+            {
+                return this.url;
             }
         }
     }

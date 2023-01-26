@@ -16,7 +16,7 @@ namespace amazonEx1
             if (driver == null)//SingleTon design pattern
             {
                 driver = new ChromeDriver("C:\\bootcamp ness\\drivers");
-                driver.Url = "https://www.amazon.com/";
+                driver.Url = "https://www.amazon.com/?language=en_US&currency=USD";
             }
             return driver;
         }

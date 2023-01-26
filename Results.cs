@@ -1,9 +1,12 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework.Interfaces;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Interactions;
 
 namespace amazonEx1
 {
@@ -17,7 +20,7 @@ namespace amazonEx1
 
         public void getResultBy(Dictionary<string, string> filters)
         {
-            string xpath = "//span[@class='a-price-whole'";
+            string xpath = "//div[@class='a-section a-spacing-small a-spacing-top-small'";
             foreach(var filter in filters)
             {
                 switch (filter.Key)
@@ -35,6 +38,25 @@ namespace amazonEx1
                 }
             }
             xpath += "]";
+
+            var elements = driver.FindElements(By.XPath(xpath));
+            List<Item> items = new List<Item>();
+
+            foreach (var el in elements)
+            {
+                var title = el.FindElement(By.XPath(".//span[@class='a-size-medium a-color-base a-text-normal']")).Text;
+                var price = el.FindElement(By.XPath(".//span[@class='a-price-whole']")).Text + "." + el.FindElement(By.XPath("//span[@class='a-price-fraction']")).Text + "$";
+                var url = el.FindElement(By.XPath(".//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']")).Text;
+                items.Add(new Item(title, price, url));
+            }
+
+            foreach (var item in items)
+            {
+                Console.WriteLine("---------------");
+                Console.WriteLine(item.Titel);
+                Console.WriteLine(item.Price);
+                Console.WriteLine(item.Url);
+            }
         }
     }
 }

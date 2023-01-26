@@ -18,8 +18,8 @@ namespace amazonEx1
             brousers = new ChromeBrowser();
             driver = brousers.InitBrowser();
             amazon = new Amazon(driver);
-            dictFilter.Add("Price_Lower_Then", "100");
-            dictFilter.Add("Price_Hiegher_OR_Equal_Then", "50");
+            dictFilter.Add("Price_Lower_Then", "1000");
+            dictFilter.Add("Price_Hiegher_OR_Equal_Then", "0");
             dictFilter.Add("Free_Shipping", "true");
         }
 
@@ -37,7 +37,6 @@ namespace amazonEx1
             {
                 Console.WriteLine(ex.Message);
             }
-            Assert.Pass();
         }
     }
 }
