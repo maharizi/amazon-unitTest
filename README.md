@@ -1,6 +1,6 @@
 # amazon-unitTest!
 
-UNIT-TEST - Opening a Chrome/Edge browser, searching for "mouse", getting a list of items, inserting into a list of items.
+UNIT-TEST - Opening a Chrome/Edge browser, searching for "mouse", getting a list of items, inserting into a list of items. (with asserts)
 
 ##---This app was developed by Maor Maharizi---##
 
