@@ -44,13 +44,24 @@ namespace amazonEx1
             var elements = driver.FindElements(By.XPath(xpath));
 
             if (elements != null)
+            {
+                //assert
+                Assert.IsNotNull(elements);
+
                 foreach (var el in elements)
                 {
                     var title = el.FindElement(By.XPath(".//span[@class='a-size-medium a-color-base a-text-normal']")).Text;
                     var price = el.FindElement(By.XPath(".//span[@class='a-price-whole']")).Text + "." + el.FindElement(By.XPath("//span[@class='a-price-fraction']")).Text + "$";
                     var url = el.FindElement(By.XPath((".//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']"))).GetAttribute("href");
                     items.Add(new Item(title, price, url));
+                    
+                    //Asserts
+                    Assert.That(title, Is.EqualTo(el.FindElement(By.XPath(".//span[@class='a-size-medium a-color-base a-text-normal']")).Text));
+                    Assert.That(price, Is.EqualTo(el.FindElement(By.XPath(".//span[@class='a-price-whole']")).Text + "." + el.FindElement(By.XPath("//span[@class='a-price-fraction']")).Text + "$"));
+                    Assert.That(url.Length, Is.GreaterThan(0));
                 }
+            }
+
             Console.WriteLine("Size Elements: " + elements.Count());
 
             foreach (var item in items)

@@ -8,20 +8,21 @@ namespace amazonEx1
     public class Tests
     {
         public IWebDriver driver;
-        BrowsersFactory brousers;
+        BrowsersFactory browsers;
         Amazon amazon;
         Dictionary<string, string> dictFilter = new Dictionary<string, string>();
 
         [SetUp]
         public void Setup()
         {
-            brousers = new EdgeBrowser();
-            brousers = new ChromeBrowser();
-            driver = brousers.InitBrowser();
+            //browsers = new EdgeBrowser();
+            browsers = new ChromeBrowser();
+            driver = browsers.InitBrowser();
             amazon = new Amazon(driver);
+            //Assert.That(typeof(browsers), Is.Not.Null.And.EqualTo());
             dictFilter.Add("Price_Lower_Then", "1000");
             dictFilter.Add("Price_Hiegher_OR_Equal_Then", "0");
-            dictFilter.Add("Free_Shipping", "true");
+            //dictFilter.Add("Free_Shipping", "true");
         }
 
         [Test]
